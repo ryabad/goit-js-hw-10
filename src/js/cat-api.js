@@ -7,7 +7,6 @@ axios.defaults.headers.common['x-api-key'] =
 Notiflix.Notify.init({
   width: '500px',
   position: 'center-top',
-  timeout: '50000',
 });
 
 const refs = {
