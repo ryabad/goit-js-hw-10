@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_iFHHuD1PAYpjNu6BjBSizo3AxPvPCEAgps2RkZ0f7KxsmBZTcQNFzQ7OysiNQzMN';
@@ -23,11 +25,29 @@ export function fetchBreeds() {
       refs.loader.classList.add('visually-hidden');
       refs.breedOption.classList.remove('visually-hidden');
       const data = response.data;
+
+      // __________________first variant_____________________
       const markup = data
         .map(({ name, id }) => `<option value="${id}">${name}</option>`)
         .join('');
 
       refs.breedOption.insertAdjacentHTML('beforeend', markup);
+      new SlimSelect({
+        select: '.breed-select',
+      });
+
+      //__________________second variant____________________
+      // const option = data.map(({ name, id }) => {
+      //   return {
+      //     text: name,
+      //     value: id,
+      //   };
+      // });
+      // new SlimSelect({
+      //   select: '.breed-select',
+      //   data: option,
+      // });
+      //_____________________________________________________
     })
     .catch(error => {
       refs.loader.classList.add('visually-hidden');
